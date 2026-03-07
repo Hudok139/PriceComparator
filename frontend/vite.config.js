@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/PriceComparator/",
+  base: ".",
   plugins: [react(), tailwindcss()],
   server: {
     allowedHosts: ["9dab-181-191-230-189.ngrok-free.app", ".ngrok-free.app"],
