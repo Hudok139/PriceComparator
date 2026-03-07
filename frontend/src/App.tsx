@@ -3,9 +3,9 @@ import { Home } from "./pages/Home";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/PriceComparator">
       <Routes>
-        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
