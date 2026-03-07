@@ -6,9 +6,15 @@ from fastapi.middleware.cors import CORSMiddleware
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Comparador de Preços")
 
+origins = [
+    "https://github.com/Hudok139",
+    "https://github.com/Hudok139/PriceComparator",
+    "http://localhost:5173", # Somente para testes locais
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], #trocar para url do front
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
