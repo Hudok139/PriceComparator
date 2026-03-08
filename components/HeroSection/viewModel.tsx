@@ -5,29 +5,31 @@ const useHeroSection = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    console.log("products vale: ", products);
-  }, [products]);
-
   const handleSearch = async () => {
     if (!productName) return;
     setLoading(true);
 
+    // 1. Pegamos a base da URL da variável de ambiente
+    // 2. Adicionamos um fallback para localhost caso a variável não exista
+    const apiBase = import.meta.env.VITE_API_URL
+      ? `https://${import.meta.env.VITE_API_URL.replace("https://", "")}`
+      : "http://127.0.0.1:8000";
+
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/products/search?q=${productName}`,
+        `${apiBase}/products/search?q=${productName}`,
       );
       const data = await response.json();
 
       console.log("Produtos recebidos:", data.results);
-
-      setProducts(data.results);
+      setProducts(data.results || []);
     } catch (e) {
       console.error("Erro ao buscar dados:", e);
     } finally {
       setLoading(false);
     }
   };
+
   return {
     productName,
     products,
