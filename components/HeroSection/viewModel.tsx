@@ -15,6 +15,8 @@ const useHeroSection = () => {
       ? `https://${import.meta.env.VITE_API_URL.replace("https://", "")}`
       : "http://127.0.0.1:8000";
 
+    console.log("Conectando em:", apiBase);
+
     try {
       const response = await fetch(
         `${apiBase}/products/search?q=${productName}`,
